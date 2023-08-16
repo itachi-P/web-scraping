@@ -3,7 +3,15 @@ Python及びCelenium、PillowによるWebスクレイピング初歩を少し体
 
 - Pythonの文法その他の理解に拘らず、Webスクレイピングの大まかな流れを体験しておくに留める
 - BeautifulSoupその他PythonのフレームワークやAI、機械学習周りに中途半端に深入りしないよう要警戒
- 
+
+## 今回の学習内容　（最小限に留め、Python基本文法含め範囲を拡げないこと）
+- seleniumを用いたサイトアクセス
+- HTML要素からテキスト情報を抽出する
+- seleniumを用いて自動ログインする
+- Pillowを用いてPythonで画像を扱う
+- ランキング形式のサイトからまとめて情報を収集する
+- Pandasを用いてデータを整理し、CSVへ掃き出す
+
 ## 基本的に他の学習優先
   - Golang
   - TypeScript
