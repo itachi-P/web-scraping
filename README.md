@@ -9,17 +9,17 @@ Python及びCelenium、Pillow、PandasによるWebスクレイピング初歩を
 
 ## 今回の学習内容（最小限に留め、学習範囲を拡げないこと）
 
-- seleniumを用いたサイトアクセス
+- Celeniumを用いた指定サイトへのアクセス
 - HTML要素からテキスト情報を抽出する
-- seleniumを用いて自動ログインする
+- Celeniumを用いて自動ログインする
 - Pandasを用いてデータを整理し、CSVへ掃き出す
-- Pillowを用いてPythonで画像を扱う
 - ランキング形式のサイトからまとめて情報を収集する
+- Pillowを用いてPythonで画像を扱う
 
 ## 基本的に他の学習優先
 
 - Golang
-- TypeScript
+- TypeScript (& Next.js, React)
 - AWS認定ソリューションアーキテクト-アソシエイト（実際に資格取得するかは要検討）
   - AWS上で現在非公開（閉鎖）状態になっている独自ドメインの再公開とポートフォリオ公開
 - WebDeveloperBootcamp2023　（※非常に長大な教材の為、上記と並行して毎日少しづつ消化）
@@ -65,8 +65,10 @@ PythonとCelenium(またはBeautifulSoup)を用い、ResponseとしてJSONを吐
   - あるいはHerokuでデプロイする（有料化したけど）
 - 或いはGolang+Gin+Gorm等を用いて同様のREST APIを実装する
   - 上記をAWS、またはGoogle系でまとめてGCP（GAEかGCEのどちらか要検討）デプロイする
-    - そもそもGinやGormを使う必要性があるか？
+    - そもそもGin, Echo等のフレームワークやGorm, sqlboiler等のORMを使う必要性があるか？
     - 多くのことがライブラリでまかなえるため、基本はWAFやORMを使わないのが「Goらしい手法」？
+      - 特にフレームワークの使用については**Go標準パッケージのnet/httpで十分かも**しれない
+      - →基本不使用の方向で
     - ORM(Ruby on RailsのActiveRecordのようなもの)を使うメリットとデメリットを検討する
       - そもそも暫くSQLを触っておらず忘れかけてるので、文法やスキーマ設計から復習する必要がある
       - 一方、ORMを使うことでSQLを意識せずに済むため、むしろ当面は積極的にORMを使うべきか？
