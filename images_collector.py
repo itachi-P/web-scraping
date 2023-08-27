@@ -1,7 +1,8 @@
 from selenium import webdriver
 browser = webdriver.Chrome()
 from selenium.webdriver.common.by import By
-import time
+# 今回画面遷移時もsleepは使ってないので不要
+# import time
 
 import io
 from urllib import request
@@ -28,8 +29,8 @@ page_urls
 
 #photo_urls = []
 
-for page in pages:
-    browser.get(page)
+for page_url in page_urls:
+    browser.get(page_url)
     
     # alt属性に「動物図鑑」を含むimgタグを全て取得
     xpath ='//img[contains(@alt, "動物図鑑")]'
@@ -41,11 +42,12 @@ for page in pages:
         image_data = request.urlopen(photo_url).read()
         image_binary = io.BytesIO(image_data)
         img = Image.open(image_binary)
-        #img = img.resize((1280, 800))
+        # サムネイルぽいサイズにリサイズ
+        img = img.resize((320, 240))
         
         # ファイル名の生成
         # ページ名 + _ + 0埋めした3ケタの連番で生成する場合
-        page_name = page.split('/')[5].split('.html')[0]
+        page_name = page_url.split('/')[5].split('.html')[0]
         img.save('images/{0}_{1:03d}.jpg'.format(page_name, index))
 
         # 元々のファイル名をそのまま取ってきて何も加工しない場合(命名ルールによっては問題が起き得る)
@@ -54,6 +56,7 @@ for page in pages:
 
 browser.close()
 
+# VSCode上ではimport pandasの部分でエラーが出るが、問題なく実行できる
 import pandas as pd
 df = pd.DataFrame()
 
