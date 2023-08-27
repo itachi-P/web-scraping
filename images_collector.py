@@ -57,6 +57,8 @@ for page_url in page_urls:
 browser.close()
 
 # VSCode上ではimport pandasの部分でエラーが出るが、問題なく実行できる
+# anacondaのbase環境にはpandasがインストール済みなので、
+# VSCodeのPython: Select Interpreterからbase環境を選択すればエラーが消える
 import pandas as pd
 df = pd.DataFrame()
 
