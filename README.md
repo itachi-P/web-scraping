@@ -1,6 +1,6 @@
 # web-scraping
 
-Python及びCelenium、Pillow、PandasによるWebスクレイピング初歩を少し体験する（極力最小コストで）
+Python及びSelenium、Pillow、PandasによるWebスクレイピング初歩を少し体験する（極力最小コストで）
 
 - Pythonの基本文法その他の理解に拘らず、Webスクレイピングの大まかな流れを体験しておくに留める
 - BeautifulSoupその他PythonのフレームワークやAI、機械学習周りに中途半端に深入りしないよう要警戒
@@ -9,12 +9,23 @@ Python及びCelenium、Pillow、PandasによるWebスクレイピング初歩を
 
 ## 今回の学習内容（最小限に留め、学習範囲を拡げないこと）
 
-- Celeniumを用いた指定サイトへのアクセス
+- Seleniumを用いた指定サイトへのアクセス
 - HTML要素からテキスト情報を抽出する
-- Celeniumを用いて自動ログインする
+- Seleniumを用いて自動ログインする
 - Pandasを用いてデータを整理し、CSVへ掃き出す
 - ランキング形式のサイトからまとめて情報を収集する
 - Pillowを用いてPythonで画像を扱う
+（2023/8/28追加）
+- 動物図鑑サイトからのテキスト情報及び画像収集プログラム作成
+  - （8/26 AM4~6時の2時間程でほぼ作成済み）
+  - 各動物種ごとのページURLのリスト及び画像をリサイズした上で保存
+- 上記のテキストデータをJSON形式で返すAPI作成
+  - （仕様未確定）
+    - 画像そのものを保存せず、画像もURLテキスト情報として返すか？
+    - テキスト情報からJSONを生成して返すだけか、それともDBとも連携するか？
+    - DBとも連携した上でJSONを返すならFlask等のフレームワークを使うか？
+  - いちおう上記の予定で、Python＆~~Flask~~FastAPIを用いてAPIを作成する方向
+    - ただし、~~Flask~~FastAPIの学習は今回の目的ではないため、最小限の範囲で実装する
 
 ## 基本的に他の学習優先
 
@@ -36,22 +47,30 @@ Python及びCelenium、Pillow、PandasによるWebスクレイピング初歩を
 
 複数の技術を組み合わせたポートフォリオサイト作成案
 
-1. インターネット上からテキストや画像を収集し、それらをJSONの形で返すだけのAPIを作成する  
-　　Python、Pandas、Celenium(またはBeautifulSoup)
-2. 1.で作成したAPIを用いて、取得したJSONからページを生成する
+1. インターネット上からテキストや画像を収集し、
+2. それらをJSONの形で返すだけのAPIまではPythonで作成する  
+　　Python、Pandas:panda:、Selenium(~~| BeautifulSoup~~) &~~Flask~~**FastAPI**
+   - (参考)
+     - [Python製Webフレームワークを Flask から FastAPI に変えた話](https://note.com/navitime_tech/n/nc0381517d067)
+3. 2.で作成したAPIを用いて、取得したJSONから画像を含むページを生成する
    - TypeScript
    - Next.js, React
    - Vercel
    - DatabaseはSupabaseを使用？或いはMongoDB？AWS？要検討
    - CSSはBootstrapではなく、極力TailwindCSSを使用する
+     - が、Tailwindに学習コストを割かないこと（最長で2時間程度に収める）
+   - ログイン機能には凝らない(今や自分でログイン機能を作り込む必要性はほぼない?)
+   - pagenationを実装する
    - 見た目（フロントエンド、デザイン領域）にあまりこだわり過ぎない
    - 見た目より**ロジック、変数名やコメントの付け方、Gitのコミット単位やメッセージの書き方**に拘る
    - **コメントは基本的にコードを見ればわかることは書かない** Why、目的を書く
    - 英語での記述にこだわって翻訳に悩むより日本語で簡潔に書く
 
-1.のAPIの例
-PythonとCelenium(またはBeautifulSoup)を用い、ResponseとしてJSONを吐くAPIを作成する
+2.のAPIの例
+PythonとSelenium(~~| BeautifulSoup~~)を用い、ResponseとしてJSONを吐く
 
+- JSONを返すAPIまで作成するならFlaskか**FastAPI**を使うか？
+  - 或いはWAFを使わずにPythonの標準ライブラリ、Jupyter Notebookのみで実装？
 - 著作権や垢VAN等のトラブル発生可能性をあまり気にしない場合
   - 例えば、Amazonの商品検索結果をCSVで返すAPIを作成する
   - 近隣のスパイスカレー屋のメニュー写真を画像で返すAPIを作成する
@@ -73,10 +92,11 @@ PythonとCelenium(またはBeautifulSoup)を用い、ResponseとしてJSONを吐
       - そもそも暫くSQLを触っておらず忘れかけてるので、文法やスキーマ設計から復習する必要がある
       - 一方、ORMを使うことでSQLを意識せずに済むため、むしろ当面は積極的にORMを使うべきか？
       - ORMを使うことで、SQLインジェクション等のセキュリティリスクを回避できるメリットもある
-      - どのみち一度どこかのタイミングでSQLの復習やデータベース構築（設計）の学習は必要と思われる
+      - どのみち一度どこかのタイミングで~~SQLの復習や~~データベース構築（設計）の学習は必要と思われる
+        - もしかすると今後SQL構文を手書きする必要性じたい薄れるかもしれない
 
 #### 注意点
 
 - Chromeのバージョンと合わせてChromeDriverをダウンロードする必要がある(WindowsだけでMacは無関係？)
-- Celenium Ver4.0以降は、find_element_by_id('username')等のメソッドが使えなくなった
+- Selenium Ver4.0以降は、find_element_by_id('username')等のメソッドが使えなくなった
   - 代わりにfind_element(BY.ID, 'username')等のメソッドを使う
