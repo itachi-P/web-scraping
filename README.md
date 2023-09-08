@@ -70,7 +70,8 @@ Python及びSelenium、Pillow、PandasによるWebスクレイピング初歩を
 PythonとSelenium(~~| BeautifulSoup~~)を用い、ResponseとしてJSONを吐く
 
 - JSONを返すAPIまで作成するならFlaskか**FastAPI**を使うか？
-  - 或いはWAFを使わずにPythonの標準ライブラリ、Jupyter Notebookのみで実装？
+  - またはWAFを使わずにPythonの標準ライブラリ、Jupyter Notebookのみで実装？
+  - 或いは取得データを整形して普通にJavaScriptだけでJSON化するのが結局一番早い
 - 著作権や垢VAN等のトラブル発生可能性をあまり気にしない場合
   - 例えば、Amazonの商品検索結果をCSVで返すAPIを作成する
   - 近隣のスパイスカレー屋のメニュー写真を画像で返すAPIを作成する
@@ -92,11 +93,11 @@ PythonとSelenium(~~| BeautifulSoup~~)を用い、ResponseとしてJSONを吐く
       - そもそも暫くSQLを触っておらず忘れかけてるので、文法やスキーマ設計から復習する必要がある
       - 一方、ORMを使うことでSQLを意識せずに済むため、むしろ当面は積極的にORMを使うべきか？
       - ORMを使うことで、SQLインジェクション等のセキュリティリスクを回避できるメリットもある
-      - どのみち一度どこかのタイミングで~~SQLの復習や~~データベース構築（設計）の学習は必要と思われる
-        - もしかすると今後SQL構文を手書きする必要性じたい薄れるかもしれない
+      - どのみち一度どこかのタイミングで~~SQLの復習や~~データベース構築(設計)の学習は必要と思われる
+        - もしかすると今後SQL構文を手書きする必要性・機会じたいが薄れるかも
 
 #### 注意点
 
-- Chromeのバージョンと合わせてChromeDriverをダウンロードする必要がある(WindowsだけでMacは無関係？)
+- Chromeのバージョンと合わせてChromeDriverをダウンロードする必要がある(Windowsだけ？)
 - Selenium Ver4.0以降は、find_element_by_id('username')等のメソッドが使えなくなった
   - 代わりにfind_element(BY.ID, 'username')等のメソッドを使う
